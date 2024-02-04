@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./SearchPage.css"
 import axios from 'axios';
+import fetchOriginAndDestination from '../Service/fetchOriginAndDestination'
 
 const SearchPage = () => {
     const [origin,setOrigin] = useState('');
@@ -11,16 +12,15 @@ const SearchPage = () => {
     const [destinationOptions,setDestinationOptions] = useState([]);
 
     useEffect(() => {
-        const fetchRoutes = async () =>{
+        const fetchRoutes = async ()=>{
             try{
-                const response = await axios.get('http://localhost:8080/open/all-routes');
-                setDestinationOptions(response.data.destination)
-                setOriginOptions(response.data.origin)
-
-            }catch(error){
-                console.log(error);
+                const { origin, destination } = await fetchRoutes();
+                setOriginOptions(origin);
+                setDestinationOptions(destination);
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
-        };
+        }
         fetchRoutes();        
     },[])  
     
