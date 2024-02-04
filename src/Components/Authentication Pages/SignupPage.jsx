@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import "./SignupPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
-
+import "./SignupPage.css"
 function SignupPage() {
     const navigate = useNavigate();
 
@@ -15,6 +14,8 @@ function SignupPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const[success,setSuccess] = useState('');
+    const[loading,setLoading] = useState(false)
+
 
 
     const handleSubmit = async (e) => {
@@ -104,6 +105,7 @@ function SignupPage() {
                 </div>
                 <div className="form-group">
                     <input placeholder='Username' 
+                    className='name' 
                     type="text"    
                     id="name" 
                     name="name" 
@@ -113,6 +115,7 @@ function SignupPage() {
                 </div>
                 <div className="form-group">
                         <input placeholder='Email' 
+                        className='name'
                         type="email" 
                         id="email" 
                         name="email" 
@@ -122,6 +125,7 @@ function SignupPage() {
 
                 <div className="form-group">
                     <input placeholder='Password' 
+                    className='name'
                     type="password" 
                     id="password" 
                     name="password" 
@@ -130,7 +134,8 @@ function SignupPage() {
                 </div>
 
                 <div className="form-group">
-                    <input placeholder='Confirm password' 
+                    <input placeholder='Confirm password'
+                    className='name' 
                     type="password" 
                     id="confirmPassword" 
                     name="confirmPassword" 
@@ -138,7 +143,7 @@ function SignupPage() {
                     onChange={(e)=>setConfirmPassword(e.target.value)}/>                       
                 </div>
 
-                <button type="submit">Sign up</button>
+                <button type="submit">{!loading?"Sign Up":"..."}</button>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
                 <p>Already have an account? <Link to="/login">Log in</Link></p>            
