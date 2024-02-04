@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./SearchPage.css"
-import Select from 'react-select';
+import axios from 'axios';
 
 const SearchPage = () => {
     const [origin,setOrigin] = useState('');
     const [filteredOriginOptions,setFilteredOriginOptions] = useState([])
     const [destination,setDestination] = useState('');
     const [filteredDestinationOptions,setFilteredDestinationOptions] = useState([])
+    const [originOptions,setOriginOptions] = useState([]);
+    const [destinationOptions,setDestinationOptions] = useState([]);
 
-    const originOptions = ["aaa", "abc", "ccc", "ddd"];
-    const destinationOptions = ["aaa", "abc", "ccc", "ddd"];
+    useEffect(() => {
+        const fetchRoutes = async () =>{
+            try{
+                const response = await axios.get('http://localhost:8080/open/all-routes');
+                setDestinationOptions(response.data.destination)
+                setOriginOptions(response.data.origin)
 
+            }catch(error){
+                console.log(error);
+            }
+        };
+        fetchRoutes();        
+    },[])  
+    
     const handleSubmit=(e)=>{
         e.preventDefault();
         if(origin===destination){

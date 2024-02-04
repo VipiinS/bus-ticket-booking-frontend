@@ -37,6 +37,7 @@
 .input-fields {
     padding: 20px 5px;
     margin: 0;
+    margin-left:10px ;
     color: rgb(192, 192, 192);
     font-weight: 400;
     outline: none;
@@ -47,10 +48,8 @@
     border-right: 2px solid #2c2c2c;
 
 }
-
-.input-fields:focus{
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
-
+.search-group{
+    padding-left: 10px;
 }
 
 .button-group{
