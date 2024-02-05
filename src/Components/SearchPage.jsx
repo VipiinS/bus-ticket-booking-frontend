@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./SearchPage.css"
-import axios from 'axios';
 import fetchOriginAndDestination from '../Service/fetchOriginAndDestination'
+import getBusByRoute from '../Service/getBusByRoute'
 
 const SearchPage = () => {
     const [origin,setOrigin] = useState('');
@@ -10,36 +10,43 @@ const SearchPage = () => {
     const [filteredDestinationOptions,setFilteredDestinationOptions] = useState([])
     const [originOptions,setOriginOptions] = useState([]);
     const [destinationOptions,setDestinationOptions] = useState([]);
+    const[bus,setbus]=useState([]);
 
     useEffect(() => {
         const fetchRoutes = async ()=>{
             try{
-                const { origin, destination } = await fetchRoutes();
+                const { origin, destination } = await fetchOriginAndDestination();
                 setOriginOptions(origin);
                 setDestinationOptions(destination);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                console.log('Error fetching data:', error);
             }
         }
         fetchRoutes();        
     },[])  
+
     
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault();
         if(origin===destination){
             return console.log("Both destination and origin should not be the same");
         }
+        try {
+            console.log(origin,destination);
+            setbus(await getBusByRoute(origin, destination))
+        } catch (error) {
+            console.error('Error in fetching bus data:', error);
+        }
+        
     }
 
     const handleOriginInputChange = (event) => {
-        // console.log(event.target.value);
         setFilteredDestinationOptions([]);
         const inputValue = event.target.value;
         setOrigin(inputValue);
         setFilteredOriginOptions(originOptions.filter(option =>
             option.toLowerCase().includes(inputValue.toLowerCase())
         ));
-        console.log(filteredOriginOptions);
     };
 
     const handleOriginSelect = (option) => {
@@ -53,7 +60,6 @@ const SearchPage = () => {
         setFilteredDestinationOptions(destinationOptions.filter(option =>
             option.toLowerCase().includes(inputValue.toLowerCase())
         ));
-        console.log(filteredOriginOptions);
     };
 
     const handleDestinationSelect = (option) => {
@@ -66,7 +72,7 @@ const SearchPage = () => {
     <div className='wrapper'>
         <div className='form-wrapper'>
             <form className='formed'
-            onSubmit={(e)=>handleSubmit(e)}>
+            onSubmit={(e)=>handleSubmit()}>
                 <div className='search-group'>
                     <input 
                     className='input-fields' 
@@ -86,7 +92,7 @@ const SearchPage = () => {
                     <input className='input-fields' type='text' placeholder='Passengers'/>
                 </div>
                 <div className='button-group'>
-                    <button className='search-button'type='submit'>Search</button>
+                    <button className='search-button' type='submit' onClick={(e)=>handleSubmit(e)}>Search</button>
                 </div>
             </form>
             <div className='options-menu'>
