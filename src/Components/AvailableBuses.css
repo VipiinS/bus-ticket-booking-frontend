@@ -1,0 +1,84 @@
+.bus-info{
+    background-color: rgba(147, 147, 147, 0.180);
+    border-radius: 10px;
+    width: 100vh;
+    padding: 15px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+}
+.bus-info:hover{
+    background-color: rgba(147, 147, 147, 0.22);
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.top-bar{
+    display: flex;
+    font-weight: 200;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.company{
+    color: rgba(147, 147, 147, 0.815);
+}
+.bus-type{
+    color: rgba(147, 147, 147, 0.815);
+}
+.extra-infos{
+    color: rgba(147, 147, 147, 0.815);
+}
+
+.bottom-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    
+}
+.time{
+    
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size:x-large;
+}
+.place{
+    color: rgba(255, 255, 255, 0.562);
+    font-weight: 400;
+}
+
+.middle-column{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 100px;
+}
+.line{
+    border-bottom: 2px solid rgba(147, 147, 147, 0.815);
+    color: transparent;
+    padding: 0px 100%;
+    margin: 0;
+    position: relative;
+    bottom: 10px;
+}
+.travel-time{
+    padding: 0px 10px;
+    color: rgba(255, 255, 255, 0.562);
+
+}
+
+.price{
+    font-size: x-large;
+    font-weight: 600;
+
+}
+
+.green{
+    color: rgb(0, 255, 119);
+}

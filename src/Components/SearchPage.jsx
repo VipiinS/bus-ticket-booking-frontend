@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./SearchPage.css"
 import fetchOriginAndDestination from '../Service/fetchOriginAndDestination'
 import getBusByRoute from '../Service/getBusByRoute'
+import AvailableBuses from './AvailableBuses'
 
 const SearchPage = () => {
     const [origin,setOrigin] = useState('');
@@ -107,6 +108,9 @@ const SearchPage = () => {
                 })
                 }
             </div>
+        </div>
+        <div>
+            <AvailableBuses/>
         </div>
     </div>
   )
