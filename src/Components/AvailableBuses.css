@@ -2,9 +2,10 @@
     background-color: rgba(147, 147, 147, 0.180);
     border-radius: 10px;
     width: 100vh;
-    padding: 15px;
+    padding: 18px;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
+    margin-top: 12px;
 }
 .bus-info:hover{
     background-color: rgba(147, 147, 147, 0.22);
@@ -16,7 +17,6 @@
     font-weight: 200;
     margin-bottom: 15px;
     justify-content: space-between;
-    padding: 0 5px;
 }
 
 .company{
@@ -39,7 +39,6 @@
 .flex-col{
     display: flex;
     flex-direction: column;
-    
 }
 .time{
     
@@ -81,4 +80,11 @@
 
 .green{
     color: rgb(0, 255, 119);
+}
+.red{
+    color:rgba(255, 25, 25, 0.835)
+}
+.seats-available{
+    padding-top: 2px;
+    margin: 0px;
 }

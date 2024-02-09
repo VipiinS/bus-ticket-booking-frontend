@@ -12,6 +12,7 @@ const SearchPage = () => {
     const [originOptions,setOriginOptions] = useState([]);
     const [destinationOptions,setDestinationOptions] = useState([]);
     const[bus,setbus]=useState([]);
+    const[isLoaded,setIsLoaded] = useState(false);
 
     useEffect(() => {
         const fetchRoutes = async ()=>{
@@ -28,13 +29,16 @@ const SearchPage = () => {
 
     
     const handleSubmit= async(e)=>{
+        
         e.preventDefault();
         if(origin===destination){
             return console.log("Both destination and origin should not be the same");
         }
         try {
             console.log(origin,destination);
-            setbus(await getBusByRoute(origin, destination))
+            const response  = await getBusByRoute(origin, destination)
+            setbus(response.data)
+            setIsLoaded(true)
         } catch (error) {
             console.error('Error in fetching bus data:', error);
         }
@@ -109,8 +113,8 @@ const SearchPage = () => {
                 }
             </div>
         </div>
-        <div>
-            <AvailableBuses/>
+        <div className='available-buses-wrapper'>
+        {isLoaded && <AvailableBuses buses={bus} />}
         </div>
     </div>
   )
