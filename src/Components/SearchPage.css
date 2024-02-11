@@ -1,5 +1,4 @@
 *{
-    color: white;
     font-family: sans-serif;
 }
 .wrapper{
@@ -15,6 +14,7 @@
     display: flex;
     flex-direction: column;
     margin-top: 40px;
+    color: #a5a5a5;
 
 }
 .formed{
@@ -30,8 +30,7 @@
 }
 
 .last-row{
-    border-right: 0px solid #f5f5f5;
-    max-width: 20%;
+    max-width: 28% !important;  
 }
 
 
@@ -46,11 +45,12 @@
     font-size: large;
     border: transparent;
     background-color: transparent; 
-    border-right: 2px solid #2c2c2c;
 
 }
 .search-group{
-    padding-left: 10px;
+    padding-left: 20px;
+    border-right: 2px solid #2c2c2c;
+    display: flex;
 }
 
 .button-group{
@@ -59,7 +59,7 @@
     font-family: sans-serif;
     align-items: center;
     justify-content: center;
-    width:10%;
+    /* width:10%; */
     margin-right: 10px;
 }
 
@@ -79,12 +79,14 @@
     
 }
 
-button:hover {
+.search-button:hover {
     background-color: #333333;
     font-weight: 100;
     color: #75ff81;
     border: 0.5px solid rgba(255,255,255,0.3);
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 2px #75ff81;
+    transition: 0.25s;
+
 }
 
 ::placeholder {
@@ -104,13 +106,92 @@ button:hover {
 .options{
     cursor: pointer;
     padding: 15px 10px;
-    /* border-bottom: 4px solid #2c2c2c; */
     color :#a5a5a5;
 
 }
 .options:hover{
     color: #f5f5f5;
 }
+.MuiOutlinedInput-notchedOutline {
+    border: none ! important ;
+  }
 
-.available-buses-wrapper{
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    color: #a5a5a5 !important;
+    padding: 0 !important;
+    width: 50% !important;
+  }
+
+  .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root{
+    padding: 0 !important;
+    justify-self: center !important;
+  }
+
+  .today-button{
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 70px;
+    background: transparent;
+    border: 1px solid #a5a5a5;
+    color:#a5a5a5
+    
+  }
+  .today-button:hover{
+
+    background-color: #333333;
+    font-weight: bold;
+    color: #ffe70e;
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 2px #ffe70e;
+    transition: 0.2s;
+  }
+
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+    padding: 0 !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root{
+    fill: #929292 !important;
+}
+.css-i4bv87-MuiSvgIcon-root :hover{
+    fill: #83eeff !important;
+}
+.css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root:hover{
+    fill: #83eeff !important;
+
+}
+.css-nk89i7-MuiPickersCalendarHeader-root{
+    padding-right: 90px !important;
+}
+
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root:hover{
+    background-color: #929292 !important;
+}
+
+.css-1vooibu-MuiSvgIcon-root:hover{
+    background-color: transparent !important;
+}
+.css-cyfsxc-MuiPickersCalendarHeader-labelContainer{
+    margin: 0;
+}
+button:hover{
+    border:none !important;
+    fill: #83eeff !important;
+}
+
+
+.no-value-error{
+    color: rgb(255, 96, 96);
+    padding: 10px;
+    transition: 0.5s;
+    transition: 2s;
+    box-shadow: 0 .3px 3px red;
+}
+
+.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button:hover{
+    color: #6f4fff !important;
+}
+.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button:hover{
+    color: #6f4fff !important;
+
 }

@@ -7,6 +7,7 @@ const api = axios.create({
 export const fetchOriginAndDestination = async () => {
   try {
     const response = await api.get('/all-routes');
+    console.log("fetched Origin and destinations successfully");
     return response.data;
   } catch (error) {
     console.error('Error fetching routes:', error);

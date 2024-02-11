@@ -1,8 +1,7 @@
 import React, {useState } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './SignupPage.css'
-
+import './LoginPage.css'
 
 function LoginPage() {
 
@@ -66,6 +65,7 @@ function LoginPage() {
             <form onSubmit={handleSubmit}>
                 {usernameInput && <div className="form-group">
                     <input placeholder='Username' 
+                    className="login-input"
                     type="text"    
                     id="name" 
                     name="name" 
@@ -75,6 +75,7 @@ function LoginPage() {
                 </div>}
                 {!usernameInput && <div className="form-group">
                         <input placeholder='Email' 
+                        className="login-input"
                         type="email" 
                         id="email" 
                         name="email" 
@@ -85,6 +86,7 @@ function LoginPage() {
 
                 <div className="form-group">
                     <input placeholder='Password' 
+                    className="login-input"
                     type="password" 
                     id="password" 
                     name="password" 

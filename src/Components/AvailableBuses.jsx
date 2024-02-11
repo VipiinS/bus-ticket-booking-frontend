@@ -1,19 +1,40 @@
 import React from 'react'
 import "./AvailableBuses.css"
+import {useNavigate} from 'react-router-dom';
+
+
 
 const AvailableBuses = ({buses}) => {
+    const navigate = useNavigate();
+    if(buses === undefined || buses.length ===0){
+        return (
+            <>
+            <div className='bus-info'>
+                <div className='no-buses-error-info red'>
+                    No buses found running on the route for the date selected
+                </div>
+
+            </div>
+            </>
+        )
+    }
+    const handleBusClick=(e)=>{
+        setTimeout(()=>{
+            navigate("/login")
+        },1500)
+    }
 
   return (
     <>
     {buses.map((bus)=>{
         return(
-        <div className='bus-info' key={bus.busId}>
+        <div className='bus-info' key={bus.busId} onClick={(e)=>handleBusClick(e)}>
             <div className="top-bar grey">
                 <div className="company">{bus.registrationNumber}</div>
                 <div className="bus-type">{bus.type}</div>
                 <div className="extra-infos">On Time</div>
             </div>
-            <div className="bottom-bar">
+            <div className="bottom-bar bottom-bar-text">
                 <div className="left-column flex-col">
                     <div className="time">{bus.departureTime.slice(0,5)}</div>
                     <div className="place">Bus station</div>

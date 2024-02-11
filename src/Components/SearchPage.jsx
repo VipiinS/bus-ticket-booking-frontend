@@ -3,8 +3,16 @@ import "./SearchPage.css"
 import fetchOriginAndDestination from '../Service/fetchOriginAndDestination'
 import getBusByRoute from '../Service/getBusByRoute'
 import AvailableBuses from './AvailableBuses'
+import {DatePicker} from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
+import moment from 'moment';
+import { addDays } from 'date-fns'
+
+
+
 
 const SearchPage = () => {
+
     const [origin,setOrigin] = useState('');
     const [filteredOriginOptions,setFilteredOriginOptions] = useState([])
     const [destination,setDestination] = useState('');
@@ -13,6 +21,8 @@ const SearchPage = () => {
     const [destinationOptions,setDestinationOptions] = useState([]);
     const[bus,setbus]=useState([]);
     const[isLoaded,setIsLoaded] = useState(false);
+    const[dateValue,setDateValue] = useState(dayjs(moment(new Date()).format('MM-DD-YYYY', moment.ISO_8601)));
+    const[error,setError] = useState('');
 
     useEffect(() => {
         const fetchRoutes = async ()=>{
@@ -31,11 +41,15 @@ const SearchPage = () => {
     const handleSubmit= async(e)=>{
         
         e.preventDefault();
+        console.log(origin);
+        if(origin === '' || destination === '') 
+        {setError("Both Origin and Destination is required to proceed")
+        return;
+    }
         if(origin===destination){
-            return console.log("Both destination and origin should not be the same");
+            return setError("Both Origin and destination cannot be same");
         }
         try {
-            console.log(origin,destination);
             const response  = await getBusByRoute(origin, destination)
             setbus(response.data)
             setIsLoaded(true)
@@ -46,6 +60,7 @@ const SearchPage = () => {
     }
 
     const handleOriginInputChange = (event) => {
+        setError('')
         setFilteredDestinationOptions([]);
         const inputValue = event.target.value;
         setOrigin(inputValue);
@@ -59,6 +74,7 @@ const SearchPage = () => {
         setFilteredOriginOptions([]);
     };
     const handleDestinationInputChange = (event) => {
+        setError('')
         setFilteredOriginOptions([])
         const inputValue = event.target.value;
         setDestination(inputValue);
@@ -94,7 +110,18 @@ const SearchPage = () => {
                     onChange={handleDestinationInputChange}/>
                 </div>
                 <div  className='search-group last-row'>
-                    <input className='input-fields' type='text' placeholder='Passengers'/>
+                <DatePicker 
+                    value={dateValue}
+                    onChange={(date)=>{setDateValue(moment(date).format('MM-DD-YYYY', moment.ISO_8601))}}  
+                    minDate={dayjs(new Date())}   
+                    maxDate={dayjs(addDays(new Date(),20))}     
+                    views={['year', 'day']}    
+                    />
+                    <button className='today-button' onClick={(e)=>{
+                        e.preventDefault();
+                        setDateValue(dayjs(new Date()))}
+                        }>
+                        Today</button>
                 </div>
                 <div className='button-group'>
                     <button className='search-button' type='submit' onClick={(e)=>handleSubmit(e)}>Search</button>
@@ -114,6 +141,7 @@ const SearchPage = () => {
             </div>
         </div>
         <div className='available-buses-wrapper'>
+            {error && <div className='formed no-value-error'>{error}</div>}
         {isLoaded && <AvailableBuses buses={bus} />}
         </div>
     </div>
