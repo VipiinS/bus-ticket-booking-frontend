@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import "./SignupPage.css"
-
 function SignupPage() {
     const navigate = useNavigate();
 
@@ -144,7 +143,7 @@ function SignupPage() {
                     onChange={(e)=>setConfirmPassword(e.target.value)}/>                       
                 </div>
 
-                <button type="submit">{!loading?"Sign Up":"..."}</button>
+                <button className="signup-submit" type="submit">{!loading?"Sign Up":"..."}</button>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
                 <p>Already have an account? <Link to="/login">Log in</Link></p>            

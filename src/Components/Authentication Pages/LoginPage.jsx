@@ -94,7 +94,7 @@ function LoginPage() {
                     onChange={(e)=>setPassword(e.target.value)}/>
                 </div>
 
-                <button type="submit" >{!loading?"Log in":"..."}</button>
+                <button className='login-submit' type="submit" >{!loading?"Log in":"..."}</button>
                 {error && <p className="error">{error}</p>}
                 {success && <p className="success">{success}</p>}
                 <p className='change-input' onClick={()=>setUsernameInput(!usernameInput)}>Use {usernameInput ? "Email" : "Username"} instead</p>            

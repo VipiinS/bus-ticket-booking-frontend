@@ -21,6 +21,7 @@
 
 .company{
     color: rgba(147, 147, 147, 0.815);
+    margin-left: 10px;
 }
 .bus-type{
     color: rgba(147, 147, 147, 0.815);
@@ -91,4 +92,8 @@
 
 .bottom-bar-text{
     color: rgba(255, 255, 255, 0.802);
+}
+
+.company-bus{
+    display: flex;
 }

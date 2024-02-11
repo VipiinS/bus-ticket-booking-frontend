@@ -1,7 +1,7 @@
 import React from 'react'
 import "./AvailableBuses.css"
 import {useNavigate} from 'react-router-dom';
-
+import { FaBus } from "react-icons/fa";
 
 
 const AvailableBuses = ({buses}) => {
@@ -30,7 +30,10 @@ const AvailableBuses = ({buses}) => {
         return(
         <div className='bus-info' key={bus.busId} onClick={(e)=>handleBusClick(e)}>
             <div className="top-bar grey">
-                <div className="company">{bus.registrationNumber}</div>
+                <div className='company-bus'>
+                    <FaBus color="rgba(255, 255, 255, 0.562)"/>
+                    <div className="company">{bus.registrationNumber}</div>
+                </div>
                 <div className="bus-type">{bus.type}</div>
                 <div className="extra-infos">On Time</div>
             </div>
