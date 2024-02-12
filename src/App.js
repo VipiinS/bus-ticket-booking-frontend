@@ -1,6 +1,6 @@
 
 import LoginPage from "./Components/Authentication Pages/LoginPage";
-import SearchPage from "./Components/SearchPage";
+import SearchPage from "./Components/SearchPage/SearchPage";
 import SignupPage from "./Components/Authentication Pages/SignupPage";
 import TestPage from "./Components/TestPage";
 

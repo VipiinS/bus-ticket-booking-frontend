@@ -1,9 +1,17 @@
-import React, {useState } from 'react'
+import React, {useState,useEffect } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './LoginPage.css'
+import {useDispatch,useSelector} from 'react-redux'
+import {useNavigate} from 'react-router-dom';
+import { addToken } from '../Redux/AuthSlice';
+
+
 
 function LoginPage() {
+  const dispatch = useDispatch();
+
+  const userAuth = useSelector(state=>state.auth)
 
 
   const[userName,setUsername] = useState('');
@@ -13,6 +21,8 @@ function LoginPage() {
     const[success,setSuccess] = useState('');
     const [usernameInput,setUsernameInput] = useState(false);
     const[loading,setLoading] = useState(false)
+    const[authPayload,setAuthPayload] = useState({});
+    
 
 
     const handleSubmit = async (e) => {
@@ -26,24 +36,30 @@ function LoginPage() {
             return;
         }
         setLoading(true)
+        const payload = {
+        "username": userName,
+        "password": password,
+        "email":email
+        }
+
         try{
-          const response = await axios.post('http://localhost:8080/open/signin',{
-            "username": userName,
-            "password": password,
-            "email":email
-          })
-          console.log(response);
+          const response = await axios.post('http://localhost:8080/open/signin',payload);
+          delete payload["password"];
+          payload.jwtToken = response.data.token;
+          payload.ROLE = ["USER"];
+          dispatch(addToken(payload));
           setSuccess("received token");
-          clearFields();
           setLoading(false)
+          return;
         }catch(error){
-          if(error.request.response===""){
+          if(error.request && error.request.response===""){
             setError("Please try again later")
             return;
-        }
-          console.log(error.response)
-          setError("invalid credentials")
-          setLoading(false)
+          }if (error.response) {
+            console.log(error.response);
+            setError('Invalid credentials');
+          }
+        setLoading(false);
         }
 
     };
@@ -54,7 +70,14 @@ function LoginPage() {
         setPassword('')
     }
 
+    const navigate = useNavigate();
 
+
+    useEffect(() => {
+      if (userAuth.isAuthenticated) {
+          navigate('/search');
+      }
+  }, [userAuth.isAuthenticated]);
 
   return (
     <div className='container'>

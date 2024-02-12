@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./SearchPage.css"
-import fetchOriginAndDestination from '../Service/fetchOriginAndDestination'
-import getBusByRoute from '../Service/getBusByRoute'
+import fetchOriginAndDestination from '../../Service/fetchOriginAndDestination'
+import getBusByRoute from '../../Service/getBusByRoute'
 import AvailableBuses from './AvailableBuses'
 import {DatePicker} from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
@@ -98,14 +98,14 @@ const SearchPage = () => {
                     <input 
                     className='input-fields' 
                     type='text' 
-                    placeholder='Origin'
+                    placeholder='From'
                     value={origin}
                     onChange={handleOriginInputChange}/>
                 </div>
                 <div className='search-group'>
                     <input className='input-fields' 
                     type='text'
-                    placeholder='Destination'
+                    placeholder='Where to?'
                     value={destination}
                     onChange={handleDestinationInputChange}/>
                 </div>
@@ -119,7 +119,8 @@ const SearchPage = () => {
                     />
                     <button className='today-button' onClick={(e)=>{
                         e.preventDefault();
-                        setDateValue(dayjs(new Date()))}
+                        setDateValue(dayjs(new Date()))
+                        handleSubmit(e)}
                         }>
                         Today</button>
                 </div>
