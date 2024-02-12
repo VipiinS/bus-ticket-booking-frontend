@@ -1,0 +1,25 @@
+.seat-seat{
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 15%;
+    color: transparent;
+    cursor: pointer;
+}
+.seat-available:hover{
+    background-color: rgb(61, 160, 209);
+
+}
+
+.seat-available{
+    background-color: rgb(76, 195, 255);
+}
+
+.seat-booked{
+    background-color: #858585;
+}
+.seat-booked:hover{
+    background-color: #a5a5a5;
+
+}
+

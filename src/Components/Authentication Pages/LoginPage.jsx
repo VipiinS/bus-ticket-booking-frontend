@@ -21,7 +21,6 @@ function LoginPage() {
     const[success,setSuccess] = useState('');
     const [usernameInput,setUsernameInput] = useState(false);
     const[loading,setLoading] = useState(false)
-    const[authPayload,setAuthPayload] = useState({});
     
 
 

@@ -21,7 +21,9 @@ const authSlice = createSlice({
             state.ROLE.push(payloadData.ROLE);
             state.isAuthenticated = true;
             state.jwtToken = payloadData.jwtToken;
-
+        },
+        removeUser(state,action){
+            state = InitialState;
         }
     }
 })  
