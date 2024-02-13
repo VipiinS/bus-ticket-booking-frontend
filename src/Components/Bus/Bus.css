@@ -1,6 +1,7 @@
 .bus-wrapper{
     border: solid 2px pink;
-    width: 100vh;
+    width: 100%;
+    margin: 0;
 }
 
 .seat-wrapper{
@@ -26,3 +27,15 @@
     gap: 20px 20px;
     justify-self: start;
 }
+
+.no-seats-error{
+    color: rgb(255, 96, 96);
+    padding: 10px;
+    transition: 0.5s;
+    transition: 2s;
+    box-shadow: 0 .3px 3px red;
+    border-radius: 15px;
+    width: 30%;
+    margin: auto;
+}
+

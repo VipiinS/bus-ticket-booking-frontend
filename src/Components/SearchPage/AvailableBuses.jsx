@@ -1,11 +1,18 @@
 import React from 'react'
 import "./AvailableBuses.css"
-import {useNavigate} from 'react-router-dom';
 import { FaBus } from "react-icons/fa";
+import axios from 'axios';
+import {useDispatch,useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import { setAllSeats } from '../Redux/SeatSlice';
+
 
 
 const AvailableBuses = ({buses}) => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+
     if(buses === undefined || buses.length ===0){
         return (
             <>
@@ -13,22 +20,25 @@ const AvailableBuses = ({buses}) => {
                 <div className='no-buses-error-info red'>
                     No buses found running on the route for the date selected
                 </div>
-
             </div>
             </>
         )
     }
-    const handleBusClick=(e)=>{
-        setTimeout(()=>{
-            navigate("/login")
-        },1500)
+    const handleBusClick=async (busId)=>{
+        try{
+            const response = await axios.get(`http://localhost:8080/api/bus/${busId}/seats`)
+            dispatch(setAllSeats(response.data));
+            navigate('/test')
+        }catch(error){
+            console.log("error fecthing the bus's seats",error);
+        }
     }
 
   return (
     <>
     {buses.map((bus)=>{
         return(
-        <div className='bus-info' key={bus.busId} onClick={(e)=>handleBusClick(e)}>
+        <div className='bus-info' key={bus.busId} onClick={(e) => handleBusClick(bus.busId)}>
             <div className="top-bar grey">
                 <div className='company-bus'>
                     <FaBus color="rgba(255, 255, 255, 0.562)"/>

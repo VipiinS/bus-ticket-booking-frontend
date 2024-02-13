@@ -1,11 +1,10 @@
 import React from 'react'
 import "./Seat.css"
-import { MdEventSeat } from "react-icons/md";
 
 
-const Seat = () => {
+const Seat = ({seat}) => {
   return (
-    <div className='seat-seat seat-available'>.</div>
+    <div className={`seat-seat seat-available ${seat.isBooked?" seat-booked":".seat-available"}`}>.</div>
   )
 }
 

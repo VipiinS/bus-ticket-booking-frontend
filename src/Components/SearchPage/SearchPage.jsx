@@ -41,7 +41,6 @@ const SearchPage = () => {
     const handleSubmit= async(e)=>{
         
         e.preventDefault();
-        console.log(origin);
         if(origin === '' || destination === '') 
         {setError("Both Origin and Destination is required to proceed")
         return;

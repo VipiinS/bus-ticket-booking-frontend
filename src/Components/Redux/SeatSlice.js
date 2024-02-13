@@ -2,10 +2,10 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const seatSlice = createSlice({
     name:"seats",
-    initialState:[{}],
+    initialState:[],
     reducers:{
         setAllSeats(state,action){
-            state = action.payload
+            return action.payload
         }
     }
 })
