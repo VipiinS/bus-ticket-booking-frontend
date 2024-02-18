@@ -24,6 +24,8 @@ const SearchPage = () => {
     const[dateValue,setDateValue] = useState(dayjs(moment(new Date()).format('MM-DD-YYYY', moment.ISO_8601)));
     const[error,setError] = useState('');
 
+
+
     useEffect(() => {
         const fetchRoutes = async ()=>{
             try{

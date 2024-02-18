@@ -5,9 +5,9 @@ const InitialState = {
     email:"",
     jwtToken: "",
     isAuthenticated: false,
-    error: null,
+    error: "",
     expirationTime: null,
-    ROLE: []
+    ROLE: [],
 }
 
 const authSlice = createSlice({

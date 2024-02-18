@@ -9,8 +9,10 @@ import { setAllSeats } from '../Redux/SeatSlice';
 
 
 const AvailableBuses = ({buses}) => {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
 
 
     if(buses === undefined || buses.length ===0){

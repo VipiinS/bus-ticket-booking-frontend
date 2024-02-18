@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Seat from './Seat'
 import "./Bus.css"
 import {useDispatch,useSelector} from 'react-redux'
@@ -6,17 +6,17 @@ import {useDispatch,useSelector} from 'react-redux'
 
 const Bus = () => {
 
-    
-    const seats = useSelector(state=>state.seat)
+    const seats = useSelector(state=>state.seat.fetchedSeats)
     console.log(seats);
 
     const totalSeats = seats && seats.length > 0 ? seats.length : 0;
     console.log(totalSeats);
     let leftColumnSeats = [];
     let rightColumnSeats = [];
+
     for (let i = 0; i < totalSeats; i++) {
         const seat = seats[i];
-        const seatComponent = <Seat seat={seat} key={seat.seatNumber} />;
+        const seatComponent = <Seat seat={seat}/>;
 
         if (i % 2 === 0) {
             leftColumnSeats.push(
